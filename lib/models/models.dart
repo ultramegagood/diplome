@@ -1,4 +1,7 @@
-enum Roles { teacher, admin }
+enum Roles {
+  teacher,
+  admin,
+}
 
 class User {
   String? id;
@@ -8,6 +11,7 @@ class User {
   String? documents;
   String? workExperience;
   String? degree;
+  String? role;
   String? diplome;
 
   User(
@@ -18,6 +22,7 @@ class User {
       this.documents,
       this.workExperience,
       this.degree,
+      this.role,
       this.diplome});
 
   Map<String, dynamic> toMap() {
@@ -30,6 +35,7 @@ class User {
       'workExperience': workExperience,
       'degree': degree,
       'diplome': diplome,
+      'role': role,
     };
   }
 
@@ -42,6 +48,7 @@ class User {
     workExperience = map['workExperience'];
     degree = map['degree'];
     diplome = map['diplome'];
+    role = map['role'];
   }
 }
 

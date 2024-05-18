@@ -29,12 +29,14 @@ class _AuthScreenState extends State<AuthScreen> {
         email: _email!,
         password: _password!,
       );
+      const role = model.Roles.teacher;
       model.User user = model.User(
         id: userCredential.user!.uid,
         fullname: _fullname,
         email: _email,
         password: _password,
         documents: '',
+        role: role.name,
         workExperience: _workExperience,
         degree: _degree,
         diplome: _diplome,

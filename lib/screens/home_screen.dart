@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'package:diplome/models/models.dart';
 import 'package:diplome/models/models.dart' as models;
+import 'package:diplome/screens/widgets/admint_list.dart';
+import 'package:diplome/screens/widgets/teacher_list.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -26,7 +28,9 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
   String? _username;
   String? _filePath;
   String? _userId;
+  String? _userRole;
   List<Document> _documents = [];
+  List<Document> _documentsAdmin = [];
 
   @override
   void initState() {
@@ -34,7 +38,8 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
     _userId = _auth.currentUser!.uid;
     _fetchDocuments();
   }
-  bool loading =false;
+
+  bool loading = false;
 
   Future _pickDocument() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
@@ -94,7 +99,13 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
         .collection('documents')
         .where('userId', isEqualTo: _userId)
         .get();
+    QuerySnapshot querySnapshotAdmin =
+        await _firestore.collection('documents').get();
     QuerySnapshot snapshot = await _firestore
+        .collection('users')
+        .where('id', isEqualTo: _userId)
+        .get();
+    QuerySnapshot snapshotRole = await _firestore
         .collection('users')
         .where('id', isEqualTo: _userId)
         .get();
@@ -103,10 +114,17 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
       _documents = querySnapshot.docs
           .map((doc) => Document.fromMap(doc.data() as Map<String, dynamic>))
           .toList();
+      _documentsAdmin = querySnapshotAdmin.docs
+          .map((doc) => Document.fromMap(doc.data() as Map<String, dynamic>))
+          .toList();
       _username = snapshot.docs
           .map((doc) => models.User.fromMap(doc.data() as Map<String, dynamic>))
           .first
           .fullname;
+      _userRole = snapshot.docs
+          .map((doc) => models.User.fromMap(doc.data() as Map<String, dynamic>))
+          .first
+          .role;
       loading = false;
     });
   }
@@ -132,29 +150,22 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child:loading? const Center(child: CircularProgressIndicator(),): Column(
-          children: [
-            Expanded(
-              child: _documents.isNotEmpty
-                  ? ListView.builder(
-                      itemCount: _documents.length,
-                      itemBuilder: (context, index) {
-                        Document doc = _documents[index];
-                        return ListTile(
-                            title: Text(doc.name!),
-                            onTap: () async {
-                              String? downloadUrl =
-                                  doc.downloadUrl; // URL-адрес файла
-                              context
-                                  .push("/pdf", extra: {"pdfUrl": downloadUrl});
-                            });
-                      })
-                  : const Center(
-                      child: Text("Добавьте файл"),
-                    ),
-            ),
-          ],
-        ),
+        child: loading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : Column(
+                children: [
+                  Expanded(
+                      child: _userRole == "teacher"
+                          ? TeacherList(
+                              documents: _documents,
+                            )
+                          : AdminList(
+                              documents: _documentsAdmin,
+                            )),
+                ],
+              ),
       ),
     );
   }
