@@ -50,6 +50,9 @@ dependencies:
   permission_handler:
   path_provider:
   xml:
+  json_serializable:
+  json_annotation:
+  build_runner:
 dev_dependencies:
   flutter_test:
     sdk: flutter

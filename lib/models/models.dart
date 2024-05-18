@@ -1,80 +1,70 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'models.g.dart';
+
 enum Roles {
   teacher,
   admin,
 }
 
+@JsonSerializable()
 class User {
-  String? id;
-  String? fullname;
-  String? email;
-  String? password;
-  String? documents;
-  String? workExperience;
-  String? degree;
-  String? role;
-  String? diplome;
+  final String id;
+  final String fullname;
+  final String email;
+  final String password;
+  final String documents;
+  final String workExperience;
+  final String degree;
+  final String role;
+  final String diplome;
 
   User(
-      {this.id,
-      this.fullname,
-      this.email,
-      this.password,
-      this.documents,
-      this.workExperience,
-      this.degree,
-      this.role,
-      this.diplome});
+      {required this.id,
+      required this.fullname,
+      required this.email,
+      required this.password,
+      required this.documents,
+      required this.workExperience,
+      required this.degree,
+      required this.role,
+      required this.diplome});
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'fullname': fullname,
-      'email': email,
-      'password': password,
-      'documents': documents,
-      'workExperience': workExperience,
-      'degree': degree,
-      'diplome': diplome,
-      'role': role,
-    };
-  }
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
-  User.fromMap(Map<String, dynamic> map) {
-    id = map['id'];
-    fullname = map['fullname'];
-    email = map['email'];
-    password = map['password'];
-    documents = map['documents'];
-    workExperience = map['workExperience'];
-    degree = map['degree'];
-    diplome = map['diplome'];
-    role = map['role'];
-  }
+  /// Connect the generated [_$PersonToJson] function to the `toJson` method.
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 }
 
+@JsonSerializable()
 class Document {
-  String? id;
-  String? name;
-  String? userId;
-  String? downloadUrl;
+  final String id;
+  final String name;
+  final String userId;
+  final String downloadUrl;
+  final String date;
+  final String perechen;
+  final String interWorks;
+  final String interConfWorks;
+  final String nameBook;
+  final List<String>? authors;
 
-  Document({this.id, this.name, this.userId, this.downloadUrl});
+  Document({
+    required this.id,
+    required this.name,
+    required this.userId,
+    required this.downloadUrl,
+    required this.date,
+    required this.perechen,
+    required this.interWorks,
+    required this.interConfWorks,
+    required this.nameBook,
+    required this.authors,
+  });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'userId': userId,
-      'downloadUrl': downloadUrl
-    };
-  }
+  factory Document.fromJson(Map<String, dynamic> json) =>
+      _$DocumentFromJson(json);
 
-  factory Document.fromMap(Map<String, dynamic> map) {
-    return Document(
-      id: map['id'],
-      name: map['name'],
-      userId: map['userId'],
-      downloadUrl: map['downloadUrl'],
-    );
-  }
+  /// Connect the generated [_$PersonToJson] function to the `toJson` method.
+  Map<String, dynamic> toJson() => _$DocumentToJson(this);
 }

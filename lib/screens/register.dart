@@ -32,17 +32,17 @@ class _AuthScreenState extends State<AuthScreen> {
       const role = model.Roles.teacher;
       model.User user = model.User(
         id: userCredential.user!.uid,
-        fullname: _fullname,
-        email: _email,
-        password: _password,
+        fullname: _fullname!,
+        email: _email!,
+        password: _password!,
         documents: '',
         role: role.name,
-        workExperience: _workExperience,
-        degree: _degree,
-        diplome: _diplome,
+        workExperience: _workExperience!,
+        degree: _degree!,
+        diplome: _diplome!,
       );
 
-      await _firestore.collection('users').doc(user.id).set(user.toMap());
+      await _firestore.collection('users').doc(user.id).set(user.toJson());
       routes.push("/");
     } catch (e) {
       print(e);

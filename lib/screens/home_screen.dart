@@ -72,13 +72,18 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
       String docId = docRef.id;
       log("id is ${docId.toString()}");
       Document doc = Document(
-        name: _documentName,
-        userId: _userId,
+        name: _documentName!,
+        userId: _userId!,
         downloadUrl: downloadUrl,
+        date: '',
+        perechen: '',
+        interWorks: '',
+        interConfWorks: '',
+        authors: [],
+        id: '',
+        nameBook: '',
       );
-      log("id is ${doc.id.toString()}");
-
-      await _firestore.collection("documents").doc(doc.id).set(doc.toMap());
+      await _firestore.collection("documents").doc(doc.id).set(doc.toJson());
 
       _fetchDocuments();
       setState(() {
@@ -110,17 +115,19 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
 
     setState(() {
       _documents = querySnapshot.docs
-          .map((doc) => Document.fromMap(doc.data() as Map<String, dynamic>))
+          .map((doc) => Document.fromJson(doc.data() as Map<String, dynamic>))
           .toList();
       _documentsAdmin = querySnapshotAdmin.docs
-          .map((doc) => Document.fromMap(doc.data() as Map<String, dynamic>))
+          .map((doc) => Document.fromJson(doc.data() as Map<String, dynamic>))
           .toList();
       _username = snapshot.docs
-          .map((doc) => models.User.fromMap(doc.data() as Map<String, dynamic>))
+          .map(
+              (doc) => models.User.fromJson(doc.data() as Map<String, dynamic>))
           .first
           .fullname;
       _userRole = snapshot.docs
-          .map((doc) => models.User.fromMap(doc.data() as Map<String, dynamic>))
+          .map(
+              (doc) => models.User.fromJson(doc.data() as Map<String, dynamic>))
           .first
           .role;
       loading = false;
