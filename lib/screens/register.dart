@@ -70,6 +70,10 @@ class _AuthScreenState extends State<AuthScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: Image.asset("assets/logo.png"),
+              ),
               TextField(
                 onChanged: (value) => _fullname = value,
                 decoration: const InputDecoration(labelText: 'ФИО'),
@@ -109,7 +113,8 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               TextField(
                 onChanged: (value) => _diplome = value,
-                decoration: const InputDecoration(labelText: 'Высшее образование'),
+                decoration:
+                    const InputDecoration(labelText: 'Высшее образование'),
               ),
               const SizedBox(
                 height: 8,
@@ -121,12 +126,13 @@ class _AuthScreenState extends State<AuthScreen> {
                     onPressed: _register,
                     child: const Text('Регистрация'),
                   ),
-                  const SizedBox(width: 8,),
+                  const SizedBox(
+                    width: 8,
+                  ),
                   ElevatedButton(
-                    onPressed: ()=>context.replace("/login"),
+                    onPressed: () => context.replace("/login"),
                     child: const Text('Логин'),
                   ),
-
                 ],
               ),
             ],

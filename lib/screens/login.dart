@@ -33,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Авторизация'),
       ),
       body: Padding(
@@ -40,6 +41,10 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height*0.2,
+                child: Image.asset("assets/logo.png"),
+              ),
               TextField(
                 onChanged: (value) => _email = value,
                 decoration: const InputDecoration(labelText: 'Email'),

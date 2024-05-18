@@ -25,9 +25,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      themeMode: ThemeMode.dark,
+
+      themeMode: ThemeMode.light,
       theme: ThemeData(
           useMaterial3: true,
+          scaffoldBackgroundColor: Colors.white,
           inputDecorationTheme: const InputDecorationTheme(
             border: OutlineInputBorder(),
           ),

@@ -1,3 +1,5 @@
+enum Roles { teacher, admin }
+
 class User {
   String? id;
   String? fullname;
@@ -8,7 +10,15 @@ class User {
   String? degree;
   String? diplome;
 
-  User({this.id, this.fullname, this.email, this.password, this.documents, this.workExperience, this.degree, this.diplome});
+  User(
+      {this.id,
+      this.fullname,
+      this.email,
+      this.password,
+      this.documents,
+      this.workExperience,
+      this.degree,
+      this.diplome});
 
   Map<String, dynamic> toMap() {
     return {
@@ -41,14 +51,14 @@ class Document {
   String? userId;
   String? downloadUrl;
 
-  Document({this.id, this.name, this.userId,this.downloadUrl});
+  Document({this.id, this.name, this.userId, this.downloadUrl});
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'name': name,
       'userId': userId,
-      'downloadUrl':downloadUrl
+      'downloadUrl': downloadUrl
     };
   }
 
