@@ -72,7 +72,6 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
       String docId = docRef.id;
       log("id is ${docId.toString()}");
       Document doc = Document(
-        id: docId, // Используем ID документа из Firestore
         name: _documentName,
         userId: _userId,
         downloadUrl: downloadUrl,
@@ -82,7 +81,6 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
       await _firestore.collection("documents").doc(doc.id).set(doc.toMap());
 
       _fetchDocuments();
-      // обновление списка после загрузки
       setState(() {
         loading = false;
       });
