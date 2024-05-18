@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1044064805009",
+    "project_id": "diplome-be373",
+    "storage_bucket": "diplome-be373.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044064805009:android:ef11c84f4ed667f382df30",
+        "android_client_info": {
+          "package_name": "kz.kdu.diplome"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEVSn91DgNBe6Q8WxN7N8VDICURkc20Oo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
