@@ -9,15 +9,15 @@ enum Roles {
 
 @JsonSerializable()
 class User {
-  final String id;
-  final String fullname;
-  final String email;
-  final String password;
-  final String documents;
-  final String workExperience;
-  final String degree;
-  final String role;
-  final String diplome;
+  final String? id;
+  final String? fullname;
+  final String? email;
+  final String? password;
+  final String? documents;
+  final String? workExperience;
+  final String? degree;
+  final String? role;
+  final String? diplome;
 
   User(
       {required this.id,
@@ -38,15 +38,15 @@ class User {
 
 @JsonSerializable()
 class Document {
-  final String id;
-  final String name;
-  final String userId;
-  final String downloadUrl;
-  final String date;
-  final String perechen;
-  final String interWorks;
-  final String interConfWorks;
-  final String nameBook;
+  final String? id;
+  final String? name;
+  final String? userId;
+  final String? downloadUrl;
+  final String? date;
+  final String? perechen;
+  final String? interWorks;
+  final String? interConfWorks;
+  final String? nameBook;
   final List<String>? authors;
 
   Document({
@@ -65,6 +65,5 @@ class Document {
   factory Document.fromJson(Map<String, dynamic> json) =>
       _$DocumentFromJson(json);
 
-  /// Connect the generated [_$PersonToJson] function to the `toJson` method.
-  Map<String, dynamic> toJson() => _$DocumentToJson(this);
+   Map<String, dynamic> toJson() => _$DocumentToJson(this);
 }

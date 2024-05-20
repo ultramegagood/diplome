@@ -45,7 +45,8 @@ class _AuthScreenState extends State<AuthScreen> {
       await _firestore.collection('users').doc(user.id).set(user.toJson());
       routes.push("/");
     } catch (e) {
-      print(e);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
 

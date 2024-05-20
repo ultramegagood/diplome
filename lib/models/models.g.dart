@@ -7,15 +7,15 @@ part of 'models.dart';
 // **************************************************************************
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
-      id: json['id'] as String,
-      fullname: json['fullname'] as String,
-      email: json['email'] as String,
-      password: json['password'] as String,
-      documents: json['documents'] as String,
-      workExperience: json['workExperience'] as String,
-      degree: json['degree'] as String,
-      role: json['role'] as String,
-      diplome: json['diplome'] as String,
+      id: json['id'] as String?,
+      fullname: json['fullname'] as String?,
+      email: json['email'] as String?,
+      password: json['password'] as String?,
+      documents: json['documents'] as String?,
+      workExperience: json['workExperience'] as String?,
+      degree: json['degree'] as String?,
+      role: json['role'] as String?,
+      diplome: json['diplome'] as String?,
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -31,15 +31,15 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
     };
 
 Document _$DocumentFromJson(Map<String, dynamic> json) => Document(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      userId: json['userId'] as String,
-      downloadUrl: json['downloadUrl'] as String,
-      date: json['date'] as String,
-      perechen: json['perechen'] as String,
-      interWorks: json['interWorks'] as String,
-      interConfWorks: json['interConfWorks'] as String,
-      nameBook: json['nameBook'] as String,
+      id: json['id'] as String?,
+      name: json['name'] as String?,
+      userId: json['userId'] as String?,
+      downloadUrl: json['downloadUrl'] as String?,
+      date: json['date'] as String?,
+      perechen: json['perechen'] as String?,
+      interWorks: json['interWorks'] as String?,
+      interConfWorks: json['interConfWorks'] as String?,
+      nameBook: json['nameBook'] as String?,
       authors:
           (json['authors'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
